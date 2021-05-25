@@ -1,3 +1,11 @@
 services:
-  _defaults:
-    autoconfigure: true
+    _defaults:
+        autoconfigure: true
+
+    Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssociationFormController:
+        public: true
+        tags:
+            -
+                name: contao.frontend_module
+                category: user
+                type: association_form
