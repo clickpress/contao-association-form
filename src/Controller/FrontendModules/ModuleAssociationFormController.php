@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license LGPL-3.0-or-later
  */
 
-namespace Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssociationForm;
+namespace Clickpress\ContaoAssociationFormBundle\Controller\FrontendModules;
 
 use Contao\BackendTemplate;
 use Contao\CoreBundle\Routing\ScopeMatcher;
@@ -19,18 +19,20 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ModuleAssociationFormController extends ModuleRegistration
 {
-    protected string $strTemplate = 'member_default';
     private $requestStack;
     private $scopeMatcher;
 
     public function __construct(RequestStack $requestStack, ScopeMatcher $scopeMatcher)
     {
+        dump('asd'); die();
+
         $this->requestStack = $requestStack;
         $this->scopeMatcher = $scopeMatcher;
     }
 
     public function generate()
     {
+        dump($this->isBackend());
         if ($this->isBackend()) {
             $objTemplate = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### '.utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['association_form'][0]).' ###';

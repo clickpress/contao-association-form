@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license LGPL-3.0-or-later
  */
 
-use Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssociationForm\ModuleAssociationFormController;
+use Clickpress\ContaoAssociationFormBundle\Controller\FrontendModules\ModuleAssociationFormController;
 use Clickpress\ContaoAssociationFormBundle\EventListener\ActivateAccountListener;
 use Clickpress\ContaoAssociationFormBundle\EventListener\AddCustomRegexpListener;
 
