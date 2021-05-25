@@ -14,7 +14,7 @@ use Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssoc
 use Clickpress\ContaoAssociationFormBundle\EventListener\ActivateAccountListener;
 use Clickpress\ContaoAssociationFormBundle\EventListener\AddCustomRegexpListener;
 
-$GLOBALS['FE_MOD']['user']['applicant_form'] = ModuleAssociationFormController::class;
+$GLOBALS['FE_MOD']['user']['association_form'] = ModuleAssociationFormController::class;
 
 $GLOBALS['TL_HOOKS']['addCustomRegexp'][] = [AddCustomRegexpListener::class, 'checkIban'];
 $GLOBALS['TL_HOOKS']['addCustomRegexp'][] = [AddCustomRegexpListener::class, 'checkBic'];
