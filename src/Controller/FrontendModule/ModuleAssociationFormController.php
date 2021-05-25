@@ -22,8 +22,10 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ModuleAssociationFormController extends ModuleRegistration
 {
-    public function __construct() {}
-    
+    public function __construct()
+    {
+    }
+
     public function __invoke(ModuleModel $model, string $section): Response
     {
         parent::__construct($model, $section);

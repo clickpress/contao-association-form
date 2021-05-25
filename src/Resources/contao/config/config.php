@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the ContaoAssociationFormBundle for Contao.
@@ -9,11 +7,3 @@ declare(strict_types=1);
  *
  * @license LGPL-3.0-or-later
  */
-
-use Clickpress\ContaoAssociationFormBundle\EventListener\ActivateAccountListener;
-use Clickpress\ContaoAssociationFormBundle\EventListener\AddCustomRegexpListener;
-
-$GLOBALS['TL_HOOKS']['addCustomRegexp'][] = [AddCustomRegexpListener::class, 'checkIban'];
-$GLOBALS['TL_HOOKS']['addCustomRegexp'][] = [AddCustomRegexpListener::class, 'checkBic'];
-$GLOBALS['TL_HOOKS']['activateAccount'][] = [ActivateAccountListener::class, 'sendAdminNotification'];
-$GLOBALS['TL_HOOKS']['activateAccount'][] = [ActivateAccountListener::class, 'completeUserData'];
