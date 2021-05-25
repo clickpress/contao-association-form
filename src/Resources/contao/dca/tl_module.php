@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['add_notification'] = [
     'inputType' => 'checkbox',
     'eval' => [
         'submitOnChange' => true,
-        'tl_class' => 'm12',
+        'tl_class' => 'cbx m12',
     ],
     'sql' => "char(1) NOT NULL default ''",
 ];
@@ -35,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['notification_mail'] = [
     'eval' => [
         'maxlength' => '255',
         'doNotCopy' => true,
-        'tl_class' => 'm12',
+        'tl_class' => 'long',
     ],
     'sql' => "varchar(255) NOT NULL default ''",
 ];
