@@ -34,7 +34,6 @@ PaletteManipulator::create()
 
 // Todo: fix translations
 $GLOBALS['TL_DCA']['tl_member']['fields']['membership'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['membership'],
     'exclude' => true,
     'filter' => true,
     'sorting' => true,
@@ -58,7 +57,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['membership'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_abg_accept'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'checkbox',
@@ -74,7 +72,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_abg_accept'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_privacy_accept'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'checkbox',
@@ -90,7 +87,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_privacy_accept'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_mail_sent'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['applicant_mail_sent'],
     'exclude' => true,
     'search' => true,
     'filter' => true,
@@ -103,7 +99,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_mail_sent'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_exported'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['applicant_exported'],
     'exclude' => true,
     'search' => true,
     'filter' => true,
@@ -116,7 +111,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_exported'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_member_ident'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_member']['applicant_member_ident'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'text',
@@ -130,7 +124,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_member_ident'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['iban'] = [
-    'label' => ['IBAN', 'IBAN-Nummer der Mitglieds'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'text',
@@ -147,7 +140,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['iban'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['bic'] = [
-    'label' => ['BIC', 'BIC des Geldinstituts'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'text',
@@ -163,7 +155,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['bic'] = [
     'sql' => "varchar(255) NOT NULL default ''",
 ];
 $GLOBALS['TL_DCA']['tl_member']['fields']['bank'] = [
-    'label' => ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'text',
@@ -179,7 +170,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['bank'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['membership_comments'] = [
-    'label' => ['ggf. Familienmitglieder, Förderbeitrag oder weitere Infos/Kommentare', 'Infos'],
     'exclude' => true,
     'search' => true,
     'inputType' => 'textarea',

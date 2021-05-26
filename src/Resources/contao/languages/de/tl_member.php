@@ -25,3 +25,7 @@ $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] = 'Mitgliedschaft';
 $GLOBALS['TL_LANG']['tl_member']['applicant_mail_sent'] = ['Mail gesendet', 'Wurde die Willkommensmail schon gesendet?'];
 $GLOBALS['TL_LANG']['tl_member']['applicant_exported'] = ['Exportiert', 'Wurde dieses Mitglied schon in in die andere Tabelle exportiert?'];
 $GLOBALS['TL_LANG']['tl_member']['applicant_member_ident'] = ['Mitgliedsnummer', 'Die Nummer dient auch als Mandatsreferenz'];
+$GLOBALS['TL_LANG']['tl_member']['iban'] = ['IBAN', 'IBAN-Nummer der Mitglieds'];
+$GLOBALS['TL_LANG']['tl_member']['bic'] = ['BIC', 'BIC des Geldinstituts'];
+$GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'];
+$GLOBALS['TL_LANG']['tl_member']['membership_comments'] = ['ggf. Familienmitglieder, Förderbeitrag oder weitere Infos/Kommentare', 'Infos'];
