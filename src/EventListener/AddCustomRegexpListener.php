@@ -15,9 +15,7 @@ namespace Clickpress\ContaoAssociationFormBundle\EventListener;
 use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Widget;
 
-/**
- * @Hook("addCustomRegexp")
- */
+
 class AddCustomRegexpListener
 {
     /**
