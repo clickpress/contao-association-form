@@ -1,0 +1,4 @@
+contao_association_form:
+    test:
+        foo: 4
+        bar: 'test'

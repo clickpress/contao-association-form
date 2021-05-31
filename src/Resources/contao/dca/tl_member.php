@@ -32,17 +32,14 @@ PaletteManipulator::create()
     ->applyToPalette('default', 'tl_member')
 ;
 
-// Todo: fix translations
+
 $GLOBALS['TL_DCA']['tl_member']['fields']['membership'] = [
     'exclude' => true,
     'filter' => true,
     'sorting' => true,
     'inputType' => 'select',
     'options' => [
-        'akt' => 'Aktives Mitglied (EUR 30,00)',
-        'jug' => 'Jugendmitglied (EUR 15,00)',
-        'fam' => 'Familien (EUR 45,00)',
-        'foerder' => 'Förderndes Mitglied (mind. EUR 100,00)',
+        'akt' => 'Vollmitglied (EUR 45,00)',
     ],
     'eval' => [
         'includeBlankOption' => false,

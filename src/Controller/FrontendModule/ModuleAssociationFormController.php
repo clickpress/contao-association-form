@@ -13,8 +13,10 @@ declare(strict_types=1);
 namespace Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
+use Contao\Email;
 use Contao\ModuleModel;
 use Contao\ModuleRegistration;
+use Contao\PageModel;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -35,7 +37,23 @@ class ModuleAssociationFormController extends ModuleRegistration
 
     protected function compile(): void
     {
+
+        $this->loadLanguageFile('tl_member');
+
+        $mail = 'mitglied@sgv.de';
+        $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1] = sprintf(
+            $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1],
+            $this->privacy_url,
+            $mail,
+            $mail
+        );
+        $GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'][1] = sprintf(
+            $GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'][1],
+            $this->statute_url
+        );
+
         parent::compile();
+
         $this->Template->slabel = $GLOBALS['TL_LANG']['FMD']['register_applicant']['button'];
     }
 }
