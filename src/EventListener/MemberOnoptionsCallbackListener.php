@@ -11,12 +11,10 @@ class MemberOnoptionsCallbackListener
      */
     public function onOptionsCallback(DataContainer $dc): array
     {
-        dump($dc);
         $group = [
             'akt' => 'Vollmitglied (EUR 5000,00)',
-            'jug' => 'Jugendmitglied (EUR 15,00)',
-            'fam' => 'Familien (EUR 45,00)',
-            'foerder' => 'Förderndes Mitglied (mind. EUR 100,00)',
+            'red' => 'red. Beitrag (EUR 22,50)',
+            'frei' => 'beitragsfrei'
         ];
 
         return $group;
