@@ -91,11 +91,11 @@ class ActivateAccountListener
         $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
 
         $mailRecipient = explode(',', $mailRecipient);
+        $logger = static::getContainer()->get('monolog.logger.contao');
 
         if (\is_array($mailRecipient)) {
             foreach ($mailRecipient as $mail) {
                 $objEmail->sendTo($mail);
-                $logger = static::getContainer()->get('monolog.logger.contao');
                 $logger->log(
                     LogLevel::INFO,
                     'Admin notification sent to '.$mail.'!',
@@ -104,6 +104,11 @@ class ActivateAccountListener
             }
         } else {
             $objEmail->sendTo($mailRecipient);
+            $logger->log(
+                LogLevel::INFO,
+                'Admin notification sent to '.$mail.'!',
+                ['contao' => new ContaoContext(__FUNCTION__, self::class)]
+            );
         }
     }
 }
