@@ -28,4 +28,4 @@ $GLOBALS['TL_LANG']['tl_member']['applicant_member_ident'] = ['Mitgliedsnummer',
 $GLOBALS['TL_LANG']['tl_member']['iban'] = ['IBAN', 'IBAN-Nummer der Mitglieds'];
 $GLOBALS['TL_LANG']['tl_member']['bic'] = ['BIC', 'BIC des Geldinstituts'];
 $GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'];
-$GLOBALS['TL_LANG']['tl_member']['membership_comments'] = ['ggf. Familienmitglieder, Förderbeitrag oder weitere Infos/Kommentare', 'Infos'];
+$GLOBALS['TL_LANG']['tl_member']['membership_comments'] = ['ggf. Familienmitglieder, Fördermitgliedschaft oder weitere Infos/Kommentare', 'Infos'];

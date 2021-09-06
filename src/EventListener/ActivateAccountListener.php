@@ -89,7 +89,7 @@ class ActivateAccountListener
         $objEmail->text = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationText'], $objMember->id, $strData."\n", $contaoLink)."\n";
 
         $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
-
+dump($mailRecipient);
         $mailRecipient = explode(',', $mailRecipient);
         $logger = static::getContainer()->get('monolog.logger.contao');
 
@@ -103,7 +103,15 @@ class ActivateAccountListener
                 );
             }
         } else {
-            $objEmail->sendTo($mailRecipient);
+            try {
+                $objEmail->sendTo($mailRecipient);
+            }catch(\Exception $exception) {
+                $logger->log(
+                    LogLevel::Error,
+                    $exception,
+                    ['contao' => new ContaoContext(__FUNCTION__, self::class)]
+                );
+            }
             $logger->log(
                 LogLevel::INFO,
                 'Admin notification sent to '.$mail.'!',
