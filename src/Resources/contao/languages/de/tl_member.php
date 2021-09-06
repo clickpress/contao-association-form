@@ -19,7 +19,7 @@ $GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'] =
 $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'] =
     ['Datenschutz', 'Ich habe die <a target="_blank" title="Öffnet in einem neuen Fenster" href="%s">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden.
 
- Hinweis: Du kannst Deine Einwilligung jederzeit für die Zukunft per E-Mail an <a href="%s">%s</a> widerrufen.'];
+ Hinweis: Du kannst Deine Einwilligung jederzeit für die Zukunft per E-Mail an <a href="mailto:%s">%s</a> widerrufen.'];
 $GLOBALS['TL_LANG']['tl_member']['bank_legend'] = 'Bankdaten';
 $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] = 'Mitgliedschaft';
 $GLOBALS['TL_LANG']['tl_member']['applicant_mail_sent'] = ['Mail gesendet', 'Wurde die Willkommensmail schon gesendet?'];

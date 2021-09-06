@@ -39,13 +39,12 @@ class ModuleAssociationFormController extends ModuleRegistration
     {
 
         $this->loadLanguageFile('tl_member');
-
-        $mail = 'mitglied@sgv.de';
+        
         $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1] = sprintf(
             $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1],
             $this->privacy_url,
-            $mail,
-            $mail
+            $this->notification_mail,
+            $this->notification_mail
         );
         $GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'][1] = sprintf(
             $GLOBALS['TL_LANG']['tl_member']['applicant_form_abg_accept'][1],
