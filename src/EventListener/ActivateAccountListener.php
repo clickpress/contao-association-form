@@ -21,6 +21,7 @@ use Contao\Environment;
 use Contao\Idna;
 use Contao\MemberModel;
 use Contao\Module;
+use Contao\System;
 use Psr\Log\LogLevel;
 
 class ActivateAccountListener
@@ -89,9 +90,9 @@ class ActivateAccountListener
         $objEmail->text = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationText'], $objMember->id, $strData."\n", $contaoLink)."\n";
 
         $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
-dump($mailRecipient); die();
+
         $mailRecipient = explode(',', $mailRecipient);
-        $logger = static::getContainer()->get('monolog.logger.contao');
+        $logger = System::getContainer()->get('monolog.logger.contao');
 
         if (\is_array($mailRecipient)) {
             foreach ($mailRecipient as $mail) {
