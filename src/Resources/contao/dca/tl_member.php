@@ -38,11 +38,7 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['membership'] = [
     'filter' => true,
     'sorting' => true,
     'inputType' => 'select',
-    'options' => [
-        'akt' => 'Vollmitglied (EUR 45,00)',
-        'red' => 'red. Beitrag (EUR 22,50)',
-        'frei' => 'beitragsfrei'
-    ],
+    'options' => $GLOBALS['TL_LANG']['tl_member']['membership'],
     'eval' => [
         'includeBlankOption' => false,
         'chosen' => true,
