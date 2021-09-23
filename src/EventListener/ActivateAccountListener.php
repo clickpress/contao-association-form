@@ -85,6 +85,9 @@ class ActivateAccountListener
         $strData .= $GLOBALS['TL_LANG']['tl_member']['postal'][0].': '.$objMember->postal."\n";
         $strData .= $GLOBALS['TL_LANG']['tl_member']['city'][0].': '.$objMember->city."\n";
         $strData .= $GLOBALS['TL_LANG']['tl_member']['email'][0].': '.$objMember->email."\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['phone'][0].': '.$objMember->phone."\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['membership'][0].': '.$objMember->membership."\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1].': '.$objMember->membership_comments."\n";
 
         $contaoLink = Environment::get('url').Environment::get('path').'/contao/main.php?do=member'."\n";
         $objEmail->text = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationText'], $objMember->id, $strData."\n", $contaoLink)."\n";
