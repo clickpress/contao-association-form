@@ -15,8 +15,6 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('d
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'add_notification';
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['add_notification'] = 'notification_mail';
 
-//dump($GLOBALS['TL_DCA']['tl_module']['subpalettes']);
-
 $GLOBALS['TL_DCA']['tl_module']['fields']['add_notification'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_module']['add_notification'],
     'exclude' => true,
