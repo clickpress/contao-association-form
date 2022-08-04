@@ -34,11 +34,12 @@ PaletteManipulator::create()
 
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['membership'] = [
+    'label' => &$GLOBALS['TL_DCA']['tl_member']['fields']['membership']['label'],
     'exclude' => true,
     'filter' => true,
     'sorting' => true,
     'inputType' => 'select',
-    'options' => $GLOBALS['TL_LANG']['tl_member']['membership'],
+    'options' => $GLOBALS['TL_LANG']['tl_member']['membership_type'] ?? null,
     'eval' => [
         'includeBlankOption' => false,
         'chosen' => true,
