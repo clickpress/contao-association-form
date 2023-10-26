@@ -10,7 +10,7 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
  */
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('reg_activate;', 'reg_activate,add_notification;', $GLOBALS['TL_DCA']['tl_module']['palettes']['registration']);
-$GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('disableCaptcha;', 'disableCaptcha,privacy_url,statute_url,statute_text;', $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form']);
+$GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('disableCaptcha;', 'disableCaptcha,privacy_url,statute_url,statute_text,membership_options;', $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form']);
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'add_notification';
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['add_notification'] = 'notification_mail';
@@ -24,6 +24,15 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['add_notification'] = [
         'tl_class' => 'cbx m12',
     ],
     'sql' => "char(1) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['membership_options'] = [
+    'inputType' => 'optionWizard',
+    'eval' => [
+        'mandatory' => true,
+        'allowHtml'=>true
+    ],
+    'sql' => "blob NULL",
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['notification_mail'] = [

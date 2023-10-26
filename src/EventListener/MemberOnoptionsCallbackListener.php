@@ -7,7 +7,7 @@ use Contao\DataContainer;
 class MemberOnoptionsCallbackListener
 {
     /**
-     * @Callback(table="tl_member", target="fields.membership.options")
+     * Callback(table="tl_member", target="fields.membership.options")
      */
     public function onOptionsCallback(DataContainer $dc): array
     {

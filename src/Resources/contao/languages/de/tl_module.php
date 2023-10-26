@@ -15,3 +15,4 @@ $GLOBALS['TL_LANG']['tl_module']['notification_mail'] = ['E-Mail-Adresse', 'An w
 $GLOBALS['TL_LANG']['tl_module']['privacy_url'] = ['Datenschutz', 'Zu welcher Datenschutz-Seite soll im Formular verlinkt werden?'];
 $GLOBALS['TL_LANG']['tl_module']['statute_url'] = ['Link zur Vereinssatzung', 'Auf welcher Seite ist die Vereinssatzung zu finden?'];
 $GLOBALS['TL_LANG']['tl_module']['statute_text'] = ['Vereinssatzung', 'Welcher Text soll bei der Checkbox zum Akzeptieren der Satzung stehen?'];
+$GLOBALS['TL_LANG']['tl_module']['membership_options'] = ['Mitgliedschaft-Optionen', 'Die Arten der Mitgliedschaft können hier angelegt werden'];

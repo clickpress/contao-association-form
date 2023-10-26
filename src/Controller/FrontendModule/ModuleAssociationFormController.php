@@ -37,8 +37,14 @@ class ModuleAssociationFormController extends ModuleRegistration
 
     protected function compile(): void
     {
+        $membership_options = unserialize($this->membership_options);
 
         $this->loadLanguageFile('tl_member');
+
+        foreach($membership_options as $option) {
+            $GLOBALS['TL_LANG']['tl_member']['membership_type'][$option['value']] = $option['label'];
+        }
+
 
         $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1] = sprintf(
             $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1],

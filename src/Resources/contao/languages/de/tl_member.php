@@ -29,8 +29,4 @@ $GLOBALS['TL_LANG']['tl_member']['iban'] = ['IBAN', 'IBAN-Nummer der Mitglieds']
 $GLOBALS['TL_LANG']['tl_member']['bic'] = ['BIC', 'BIC des Geldinstituts'];
 $GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'];
 $GLOBALS['TL_LANG']['tl_member']['membership_comments'] = ['ggf. Familienmitglieder, Fördermitgliedschaft oder weitere Infos/Kommentare', 'Kommentar'];
-$GLOBALS['TL_LANG']['tl_member']['membership_type'] = [
-    'akt' => 'Vollmitglied (EUR 45,00)',
-    'red' => 'red. Beitrag (EUR 22,50)',
-    'frei' => 'beitragsfrei'
-];
+$GLOBALS['TL_LANG']['tl_member']['membership_type'] = [];
