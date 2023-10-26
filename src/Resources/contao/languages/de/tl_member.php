@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license LGPL-3.0-or-later
  */
 
-$GLOBALS['TL_LANG']['tl_member']['kontoDetails'] = 'Konto Details';
+$GLOBALS['TL_LANG']['tl_member']['bankDetails'] = 'Konto Details';
 $GLOBALS['TL_LANG']['tl_member']['agbDetails'] = 'Konto Details';
 $GLOBALS['TL_LANG']['tl_member']['membershipDetails'] = 'Mitgliedschaft';
 $GLOBALS['TL_LANG']['tl_member']['membership'] = ['Mitgliedschaft', 'Welche Art von Mitgliedschaft?'];
