@@ -31,6 +31,6 @@ $GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das G
 $GLOBALS['TL_LANG']['tl_member']['membership_comments'] = ['ggf. Familienmitglieder, Fördermitgliedschaft oder weitere Infos/Kommentare', 'Kommentar'];
 $GLOBALS['TL_LANG']['tl_member']['membership_type'] = [
     'akt' => 'Vollmitglied (EUR 45,00)',
-    'red' => 'red. Beitrag (EUR 22,50)',
+    'red' => 'red. Beitrag (EUR 26,00)',
     'frei' => 'beitragsfrei'
 ];

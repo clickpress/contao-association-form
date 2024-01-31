@@ -12,8 +12,8 @@ class MemberOnoptionsCallbackListener
     public function onOptionsCallback(DataContainer $dc): array
     {
         $group = [
-            'akt' => 'Vollmitglied (EUR 5000,00)',
-            'red' => 'red. Beitrag (EUR 22,50)',
+            'akt' => 'Vollmitglied (EUR 45,00)',
+            'red' => 'red. Beitrag (EUR 26,00)',
             'frei' => 'beitragsfrei'
         ];
 
