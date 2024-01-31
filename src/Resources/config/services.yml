@@ -1,8 +1,7 @@
 services:
     _defaults:
+        autowire: true
         autoconfigure: true
-        autowire: false
-        public: false
 
     Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssociationFormController:
         public: true
