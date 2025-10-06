@@ -65,7 +65,7 @@ class ActivateAccountListener
 
         $objEmail->from = $GLOBALS['TL_ADMIN_EMAIL'];
         $objEmail->fromName = $GLOBALS['TL_ADMIN_NAME'];
-        $objEmail->subject = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'], Idna::decode(\Environment::get('host')));
+        $objEmail->subject = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'], Idna::decode(Environment::get('host')));
 
         $strData = "\n\n";
 
