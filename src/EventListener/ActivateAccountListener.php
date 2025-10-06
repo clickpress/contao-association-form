@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace Clickpress\ContaoAssociationFormBundle\EventListener;
 
 use Contao\Config;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\CoreBundle\Monolog\ContaoContext;
-use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\Date;
 use Contao\Email;
 use Contao\Environment;
@@ -26,11 +26,7 @@ use Psr\Log\LogLevel;
 
 class ActivateAccountListener
 {
-    /**
-     * Manipulate fields.
-     *
-     * @Hook("activateAccount")
-     */
+    #[AsHook('activateAccount')]
     public function completeUserData(MemberModel $objMember, Module $modRegistration): void
     {
         // Set date of membership start to now
@@ -60,9 +56,8 @@ class ActivateAccountListener
 
     /**
      * Send an admin notification e-mail.
-     *
-     * @Hook("activateAccount")
      */
+    #[AsHook('activateAccount')]
     public function sendAdminNotification(MemberModel $objMember, Module $objModule): void
     {
         if ('' === $objModule->add_notification) {

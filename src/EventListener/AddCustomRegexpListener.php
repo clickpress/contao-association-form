@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Clickpress\ContaoAssociationFormBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Widget;
 
 
@@ -20,9 +20,8 @@ class AddCustomRegexpListener
 {
     /**
      * Check IBAN.
-     *
-     * @Hook("addCustomRegexp")
      */
+    #[AsHook('addCustomRegexp')]
     public function checkIban(string $regexp, $input, Widget $objWidget): bool
     {
         if ('iban' === $regexp) {
@@ -41,9 +40,8 @@ class AddCustomRegexpListener
 
     /**
      * Check BIC.
-     *
-     * @Hook("addCustomRegexp")
      */
+    #[AsHook('addCustomRegexp')]
     public function checkBic(string $regexp, $input, Widget $objWidget): bool
     {
         if ('bic' === $regexp) {

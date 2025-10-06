@@ -2,14 +2,13 @@
 
 namespace Clickpress\ContaoAssociationFormBundle\EventListener;
 
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 
+#[AsCallback('tl_content', 'fields.membership.options')]
 class MemberOnoptionsCallbackListener
 {
-    /**
-     * @Callback(table="tl_member", target="fields.membership.options")
-     */
-    public function onOptionsCallback(DataContainer $dc): array
+    public function __invoke(array $attributes, DataContainer $dc): array
     {
         $group = [
             'akt' => 'Vollmitglied (EUR 45,00)',

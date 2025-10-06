@@ -12,25 +12,17 @@ declare(strict_types=1);
 
 namespace Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule;
 
-use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
-use Contao\Email;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
 use Contao\ModuleModel;
 use Contao\ModuleRegistration;
-use Contao\PageModel;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @FrontendModule(category="user")
- */
+#[AsFrontendModule(category: 'user')]
 class ModuleAssociationFormController extends ModuleRegistration
 {
-    public function __construct()
-    {
-    }
 
     public function __invoke(ModuleModel $model, string $section): Response
     {
-        parent::__construct($model, $section);
 
         return new Response($this->generate());
     }
@@ -39,7 +31,7 @@ class ModuleAssociationFormController extends ModuleRegistration
     {
 
         $this->loadLanguageFile('tl_member');
-        
+
         $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1] = sprintf(
             $GLOBALS['TL_LANG']['tl_member']['applicant_form_privacy_accept'][1],
             $this->privacy_url,
