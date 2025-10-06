@@ -17,10 +17,11 @@ use Psr\Log\LogLevel;
 
 class ActivateAccountListener
 {
-    private $logger;
+    private LoggerInterface $logger;
 
     public function __construct(LoggerInterface $logger)
     {
+        $this->logger = $logger;
     }
 
     #[AsHook('activateAccount')]
