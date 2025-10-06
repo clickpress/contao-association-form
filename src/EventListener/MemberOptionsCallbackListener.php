@@ -6,7 +6,7 @@ use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 
 #[AsCallback('tl_content', 'fields.membership.options')]
-class MemberOnoptionsCallbackListener
+class MemberOptionsCallbackListener
 {
     public function __invoke(array $attributes, DataContainer $dc): array
     {
