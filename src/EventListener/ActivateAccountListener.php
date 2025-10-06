@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of the ContaoAssociationFormBundle for Contao.
- *
- * (c) Stefan Schulz-Lauterbach
- *
- * @license LGPL-3.0-or-later
- */
-
 namespace Clickpress\ContaoAssociationFormBundle\EventListener;
 
 use Contao\Config;
@@ -22,10 +12,17 @@ use Contao\Idna;
 use Contao\MemberModel;
 use Contao\Module;
 use Contao\System;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 class ActivateAccountListener
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+    }
+
     #[AsHook('activateAccount')]
     public function completeUserData(MemberModel $objMember, Module $modRegistration): void
     {
@@ -90,20 +87,19 @@ class ActivateAccountListener
         $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
 
         $mailRecipient = explode(',', $mailRecipient);
-        $logger = System::getContainer()->get('monolog.logger.contao');
 
         if (\is_array($mailRecipient)) {
             foreach ($mailRecipient as $mail) {
                 try {
                     $objEmail->sendTo($mail);
                 }catch(\Exception $exception) {
-                    $logger->log(
-                        LogLevel::Error,
+                    $this->logger->log(
+                        LogLevel::ERROR,
                         $exception,
                         ['contao' => new ContaoContext(__FUNCTION__, self::class)]
                     );
                 }
-                $logger->log(
+                $this->logger->log(
                     LogLevel::INFO,
                     'Admin notification sent to '.$mail.'!',
                     ['contao' => new ContaoContext(__FUNCTION__, self::class)]
@@ -113,13 +109,13 @@ class ActivateAccountListener
             try {
                 $objEmail->sendTo($mailRecipient);
             }catch(\Exception $exception) {
-                $logger->log(
-                    LogLevel::Error,
+                $this->logger->log(
+                    LogLevel::ERROR,
                     $exception,
                     ['contao' => new ContaoContext(__FUNCTION__, self::class)]
                 );
             }
-            $logger->log(
+            $this->logger->log(
                 LogLevel::INFO,
                 'Admin notification sent to '.$mail.'!',
                 ['contao' => new ContaoContext(__FUNCTION__, self::class)]
