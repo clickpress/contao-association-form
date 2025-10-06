@@ -17,12 +17,21 @@ use Contao\ModuleModel;
 use Contao\ModuleRegistration;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsFrontendModule(category: 'user')]
+#[AsFrontendModule('association_form',  category: 'user', template: 'registration_form')]
 class ModuleAssociationFormController extends ModuleRegistration
 {
+    /**
+     * @noinspection PhpMissingParentConstructorInspection
+     */
+    public function __construct(
+    )
+    {
+        //parent::__construct($model, $strColumn);
+    }
 
     public function __invoke(ModuleModel $model, string $section): Response
     {
+        parent::__construct($model, $section);
 
         return new Response($this->generate());
     }
