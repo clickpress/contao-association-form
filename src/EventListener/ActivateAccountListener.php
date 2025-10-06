@@ -117,7 +117,7 @@ class ActivateAccountListener
             }
             $this->logger->log(
                 LogLevel::INFO,
-                'Admin notification sent to '.$mail.'!',
+                'Admin notification sent to '.$mailRecipient.'!',
                 ['contao' => new ContaoContext(__FUNCTION__, self::class)]
             );
         }
