@@ -2,17 +2,24 @@
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
+$GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = $GLOBALS['TL_DCA']['tl_module']['palettes']['registration'];
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['add_notification'] = '';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'add_notification';
+
+;
 PaletteManipulator::create()
-    ->addField('add_notification', 'reg_activate', PaletteManipulator::POSITION_APPEND)
-    ->addField('privacy_url', 'disableCaptcha', PaletteManipulator::POSITION_APPEND)
-    ->addField('statute_url', 'disableCaptcha', PaletteManipulator::POSITION_APPEND)
-    ->applyToSubpalette('notification_mail', 'add_notification')
+    ->addLegend('association_legend', 'title_legend', PaletteManipulator::POSITION_AFTER)
+    ->addField('privacy_url', 'association_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('statute_url', 'association_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('add_notification', 'email_legend', PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('association_form', 'tl_module')
 ;
 
-//$GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('reg_activate;', 'reg_activate,add_notification;', $GLOBALS['TL_DCA']['tl_module']['palettes']['registration']);
-//$GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('disableCaptcha;', 'disableCaptcha,privacy_url,statute_url;', $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form']);
-//$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'add_notification';
-//$GLOBALS['TL_DCA']['tl_module']['subpalettes']['add_notification'] = 'notification_mail';
+PaletteManipulator::create()
+    ->addField('notification_mail', 'add_notification', PaletteManipulator::POSITION_APPEND)
+    ->applyToSubpalette('add_notification', 'tl_module')
+    ;
+
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['add_notification'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_module']['add_notification'],
