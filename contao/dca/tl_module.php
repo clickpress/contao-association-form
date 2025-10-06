@@ -1,15 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * This file is part of the ContaoAssociationFormBundle for Contao.
- *
- * (c) Stefan Schulz-Lauterbach
- *
- * @license LGPL-3.0-or-later
- */
-
 $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('reg_activate;', 'reg_activate,add_notification;', $GLOBALS['TL_DCA']['tl_module']['palettes']['registration']);
 $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form'] = str_replace('disableCaptcha;', 'disableCaptcha,privacy_url,statute_url;', $GLOBALS['TL_DCA']['tl_module']['palettes']['association_form']);
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'add_notification';
