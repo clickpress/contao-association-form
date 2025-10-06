@@ -1,3 +1,0 @@
-services:
-    Clickpress\ContaoAssociationFormBundle\EventListener\ActivateAccountListener:
-        tags: ['terminal42_service_annotation']
