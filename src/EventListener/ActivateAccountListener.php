@@ -57,7 +57,7 @@ class ActivateAccountListener
     #[AsHook('activateAccount')]
     public function sendAdminNotification(MemberModel $member, Module $module): void
     {
-        if ($module->add_notification) {
+        if (!$module->add_notification) {
             return;
         }
 
@@ -85,7 +85,7 @@ class ActivateAccountListener
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership_type'][$member->membership] . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
 
         $contaoLink = Environment::get('url') . Environment::get('path') . '/contao/main.php?do=member' . "\n";
