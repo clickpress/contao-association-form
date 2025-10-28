@@ -24,13 +24,13 @@ class ActivateAccountListener
     }
 
     #[AsHook('activateAccount')]
-    public function completeUserData(MemberModel $objMember, Module $modRegistration): void
+    public function completeUserData(MemberModel $member, Module $registration): void
     {
         // Set date of membership start to now
-        $objMember->membership_since = time();
+        $member->membership_since = time();
 
         // Add membership fee
-        switch ($objMember->membership) {
+        switch ($member->membership) {
             case 'akt':
                 $fee = 45;
                 break;
@@ -47,8 +47,8 @@ class ActivateAccountListener
                 $fee = 0;
         }
 
-        $objMember->membership_fee = $fee;
-        $objMember->save();
+        $member->membership_fee = $fee;
+        $member->save();
     }
 
     /**
