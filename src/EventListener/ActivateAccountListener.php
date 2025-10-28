@@ -18,14 +18,16 @@ class ActivateAccountListener
 {
     private LoggerInterface $logger;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, string $adminEmail = '')
     {
         $this->logger = $logger;
+        $this->adminEmail = $adminEmail;
     }
 
     #[AsHook('activateAccount')]
     public function completeUserData(MemberModel $member, Module $registration): void
     {
+        dd($this->adminEmail);
         // Set date of membership start to now
         $member->membership_since = time();
 
@@ -63,8 +65,7 @@ class ActivateAccountListener
 
         $objEmail = new Email();
 
-        $objEmail->from = $GLOBALS['TL_ADMIN_EMAIL'];
-        $objEmail->fromName = $GLOBALS['TL_ADMIN_NAME'];
+        $objEmail->from = $this->adminEmail;
         $objEmail->subject = sprintf(
             $GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'],
             Idna::decode(Environment::get('host'))
@@ -84,7 +85,7 @@ class ActivateAccountListener
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
         $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
 
         $contaoLink = Environment::get('url') . Environment::get('path') . '/contao/main.php?do=member' . "\n";
@@ -95,7 +96,7 @@ class ActivateAccountListener
                 $contaoLink
             ) . "\n";
 
-        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
+        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $this->adminEmail;
 
         $mailRecipient = explode(',', $mailRecipient);
 
