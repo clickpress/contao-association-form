@@ -11,7 +11,6 @@ use Contao\Environment;
 use Contao\Idna;
 use Contao\MemberModel;
 use Contao\Module;
-use Contao\System;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
