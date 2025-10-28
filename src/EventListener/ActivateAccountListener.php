@@ -56,7 +56,7 @@ class ActivateAccountListener
      * Send an admin notification e-mail.
      */
     #[AsHook('activateAccount')]
-    public function sendAdminNotification(MemberModel $objMember, Module $objModule): void
+    public function sendAdminNotification(MemberModel $member, Module $objModule): void
     {
         if ('' === $objModule->add_notification) {
             return;
@@ -66,24 +66,35 @@ class ActivateAccountListener
 
         $objEmail->from = $GLOBALS['TL_ADMIN_EMAIL'];
         $objEmail->fromName = $GLOBALS['TL_ADMIN_NAME'];
-        $objEmail->subject = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'], Idna::decode(Environment::get('host')));
+        $objEmail->subject = sprintf(
+            $GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'],
+            Idna::decode(Environment::get('host'))
+        );
 
         $strData = "\n\n";
 
         // Add user details
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['firstname'][0].': '.$objMember->firstname."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['lastname'][0].': '.$objMember->lastname."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['dateOfBirth'][0].': '.Date::parse(Config::get('dateFormat'), $objMember->dateOfBirth)."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['street'][0].': '.$objMember->street."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['postal'][0].': '.$objMember->postal."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['city'][0].': '.$objMember->city."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['email'][0].': '.$objMember->email."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['phone'][0].': '.$objMember->phone."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'].': '.$GLOBALS['TL_LANG']['tl_member']['membership'][$objMember->membership]."\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1].': '.$objMember->membership_comments."\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['firstname'][0] . ': ' . $member->firstname . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['lastname'][0] . ': ' . $member->lastname . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['dateOfBirth'][0] . ': ' . Date::parse(
+                Config::get('dateFormat'),
+                $member->dateOfBirth
+            ) . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['street'][0] . ': ' . $member->street . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['postal'][0] . ': ' . $member->postal . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
+        $strData .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
 
-        $contaoLink = Environment::get('url').Environment::get('path').'/contao/main.php?do=member'."\n";
-        $objEmail->text = sprintf($GLOBALS['TL_LANG']['MSC']['adminNotificationText'], $objMember->id, $strData."\n", $contaoLink)."\n";
+        $contaoLink = Environment::get('url') . Environment::get('path') . '/contao/main.php?do=member' . "\n";
+        $objEmail->text = sprintf(
+                $GLOBALS['TL_LANG']['MSC']['adminNotificationText'],
+                $member->id,
+                $strData . "\n",
+                $contaoLink
+            ) . "\n";
 
         $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
 
@@ -93,7 +104,7 @@ class ActivateAccountListener
             foreach ($mailRecipient as $mail) {
                 try {
                     $objEmail->sendTo($mail);
-                }catch(\Exception $exception) {
+                } catch (\Exception $exception) {
                     $this->logger->log(
                         LogLevel::ERROR,
                         $exception,
@@ -102,14 +113,14 @@ class ActivateAccountListener
                 }
                 $this->logger->log(
                     LogLevel::INFO,
-                    'Admin notification sent to '.$mail.'!',
+                    'Admin notification sent to ' . $mail . '!',
                     ['contao' => new ContaoContext(__FUNCTION__, self::class)]
                 );
             }
         } else {
             try {
                 $objEmail->sendTo($mailRecipient);
-            }catch(\Exception $exception) {
+            } catch (\Exception $exception) {
                 $this->logger->log(
                     LogLevel::ERROR,
                     $exception,
@@ -118,7 +129,7 @@ class ActivateAccountListener
             }
             $this->logger->log(
                 LogLevel::INFO,
-                'Admin notification sent to '.$mailRecipient.'!',
+                'Admin notification sent to ' . $mailRecipient . '!',
                 ['contao' => new ContaoContext(__FUNCTION__, self::class)]
             );
         }
