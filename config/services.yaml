@@ -1,13 +1,20 @@
 services:
     _defaults:
         autoconfigure: true
-        autowire: false
-        public: false
+        autowire: true
+        public: true
+
+    Clickpress\ContaoAssociationFormBundle\:
+        resource: ../src
+        exclude: ../src/{ContaoManager,DependencyInjection,ContaoAssociationBundle.php}
 
     Clickpress\ContaoAssociationFormBundle\Controller\FrontendModule\ModuleAssociationFormController:
         public: true
         tags:
-            -
-                name: contao.frontend_module
+            -   name: contao.frontend_module
                 category: user
                 type: association_form
+
+    Clickpress\ContaoAssociationFormBundle\EventListener\ActivateAccountListener:
+        arguments:
+            $logger: '@?logger'

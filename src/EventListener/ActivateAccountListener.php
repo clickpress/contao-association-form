@@ -18,16 +18,14 @@ class ActivateAccountListener
 {
     private LoggerInterface $logger;
 
-    public function __construct(LoggerInterface $logger, string $adminEmail = '')
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
-        $this->adminEmail = $adminEmail;
     }
 
     #[AsHook('activateAccount')]
     public function completeUserData(MemberModel $member, Module $registration): void
     {
-        dd($this->adminEmail);
         // Set date of membership start to now
         $member->membership_since = time();
 
@@ -59,13 +57,15 @@ class ActivateAccountListener
     #[AsHook('activateAccount')]
     public function sendAdminNotification(MemberModel $member, Module $module): void
     {
-        if ('' === $module->add_notification) {
+        if ($module->add_notification) {
             return;
         }
 
+        $adminMail = Config::get('adminEmail');
+
         $objEmail = new Email();
 
-        $objEmail->from = $this->adminEmail;
+        $objEmail->from = $adminMail;
         $objEmail->subject = sprintf(
             $GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'],
             Idna::decode(Environment::get('host'))
@@ -96,7 +96,7 @@ class ActivateAccountListener
                 $contaoLink
             ) . "\n";
 
-        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $this->adminEmail;
+        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $adminMail;
 
         $mailRecipient = explode(',', $mailRecipient);
 
