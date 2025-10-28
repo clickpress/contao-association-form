@@ -55,9 +55,9 @@ class ActivateAccountListener
      * Send an admin notification e-mail.
      */
     #[AsHook('activateAccount')]
-    public function sendAdminNotification(MemberModel $member, Module $objModule): void
+    public function sendAdminNotification(MemberModel $member, Module $module): void
     {
-        if ('' === $objModule->add_notification) {
+        if ('' === $module->add_notification) {
             return;
         }
 
@@ -70,32 +70,32 @@ class ActivateAccountListener
             Idna::decode(Environment::get('host'))
         );
 
-        $strData = "\n\n";
+        $mailContent = "\n\n";
 
         // Add user details
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['firstname'][0] . ': ' . $member->firstname . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['lastname'][0] . ': ' . $member->lastname . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['dateOfBirth'][0] . ': ' . Date::parse(
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['firstname'][0] . ': ' . $member->firstname . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['lastname'][0] . ': ' . $member->lastname . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['dateOfBirth'][0] . ': ' . Date::parse(
                 Config::get('dateFormat'),
                 $member->dateOfBirth
             ) . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['street'][0] . ': ' . $member->street . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['postal'][0] . ': ' . $member->postal . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
-        $strData .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['street'][0] . ': ' . $member->street . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['postal'][0] . ': ' . $member->postal . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['member_ship_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership'][$member->membership] . "\n";
+        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
 
         $contaoLink = Environment::get('url') . Environment::get('path') . '/contao/main.php?do=member' . "\n";
         $objEmail->text = sprintf(
                 $GLOBALS['TL_LANG']['MSC']['adminNotificationText'],
                 $member->id,
-                $strData . "\n",
+                $mailContent . "\n",
                 $contaoLink
             ) . "\n";
 
-        $mailRecipient = '' !== $objModule->notification_mail ? $objModule->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
+        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $GLOBALS['TL_ADMIN_EMAIL'];
 
         $mailRecipient = explode(',', $mailRecipient);
 
