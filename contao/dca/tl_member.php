@@ -26,6 +26,7 @@ PaletteManipulator::create()
 
 PaletteManipulator::create()
     ->addLegend('bank_legend', 'contact_legend', PaletteManipulator::POSITION_AFTER)
+    ->addField('sepa_owner', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('iban', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('bic', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('bank', 'bank_legend', PaletteManipulator::POSITION_APPEND)
@@ -117,6 +118,24 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['applicant_member_ident'] = [
         'doNotCopy' => true,
     ],
     'sql' => "char(1) NOT NULL default ''",
+];
+
+
+
+$GLOBALS['TL_DCA']['tl_member']['fields']['sepa_owner'] = [
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'text',
+    'eval' => [
+        'feEditable' => true,
+        'feViewable' => true,
+        'feGroup' => 'konto',
+        'tl_class' => 'w50',
+        'rgxp' => 'alpha',
+        'mandatory' => false,
+        'doNotCopy' => true,
+    ],
+    'sql' => "varchar(255) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['iban'] = [

@@ -40,6 +40,7 @@ $GLOBALS['TL_LANG']['tl_member']['applicant_member_ident'] = [
     'Mitgliedsnummer',
     'Die Nummer dient auch als Mandatsreferenz'
 ];
+$GLOBALS['TL_LANG']['tl_member']['sepa_owner'] = ['Kontoinhaber', 'Name des Kontoinhabers'];
 $GLOBALS['TL_LANG']['tl_member']['iban'] = ['IBAN', 'IBAN-Nummer der Mitglieds'];
 $GLOBALS['TL_LANG']['tl_member']['bic'] = ['BIC', 'BIC des Geldinstituts'];
 $GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'];
