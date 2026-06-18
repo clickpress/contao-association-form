@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license LGPL-3.0-or-later
  */
 
-$GLOBALS['TL_LANG']['tl_member']['kontoDetails'] = 'Konto Details';
+$GLOBALS['TL_LANG']['tl_member']['kontoDetails'] = 'SEPA-Lastschriftmandat';
 $GLOBALS['TL_LANG']['tl_member']['agbDetails'] = 'Konto Details';
 $GLOBALS['TL_LANG']['tl_member']['membershipDetails'] = 'Mitgliedschaft';
 $GLOBALS['TL_LANG']['tl_member']['membership'] = ['Mitgliedschaft', 'Welche Art von Mitgliedschaft?'];
@@ -40,7 +40,7 @@ $GLOBALS['TL_LANG']['tl_member']['applicant_member_ident'] = [
     'Mitgliedsnummer',
     'Die Nummer dient auch als Mandatsreferenz'
 ];
-$GLOBALS['TL_LANG']['tl_member']['sepa_owner'] = ['Kontoinhaber', 'Name des Kontoinhabers'];
+$GLOBALS['TL_LANG']['tl_member']['sepa_owner'] = ['Kontoinhaber (Vorname & Nachname)', 'Name des Kontoinhabers'];
 $GLOBALS['TL_LANG']['tl_member']['iban'] = ['IBAN', 'IBAN-Nummer der Mitglieds'];
 $GLOBALS['TL_LANG']['tl_member']['bic'] = ['BIC', 'BIC des Geldinstituts'];
 $GLOBALS['TL_LANG']['tl_member']['bank'] = ['Bank', 'Tragen Sie bitte hier das Geldinstitut ein'];
@@ -52,4 +52,15 @@ $GLOBALS['TL_LANG']['tl_member']['membership_type'] = [
     'akt' => 'Vollmitglied (EUR 45,00)',
     'red' => 'red. Beitrag (EUR 26,00)',
     'frei' => 'beitragsfrei'
+];
+
+$GLOBALS['TL_LANG']['tl_member']['applicant_form_sepa_debit_authorisation'] = [
+    'Einzugsermächtigung',
+    'Ich ermächtige / Wir ermächtigen den Zahlungsempfänger (Name siehe oben) widerruflich, die von mir / uns zu entrichtenden Zahlungen bei Fälligkeit durch Lastschrift von meinem / unserem Konto einzuziehen.'
+];
+
+$GLOBALS['TL_LANG']['tl_member']['applicant_form_sepa_debit'] = [
+    'SEPA-Lastschriftmandat',
+    'Ich ermächtige / Wir ermächtigen (A) den Zahlungsempfänger (Name siehe oben), Zahlungen von meinem / unserem Konto mittels Lastschrift einzuziehen. Zugleich (B) weise ich mein / weisen wir unser Kreditinstitut an, die vom Zahlungsempfänger (Name siehe oben) auf mein / unser Konto gezogenen Lastschriften einzulösen.
+     <br>Hinweis: Ich kann / Wir können innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem / unserem Kreditinstitut vereinbarten Bedingungen.'
 ];

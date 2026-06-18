@@ -132,7 +132,7 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['sepa_owner'] = [
         'feGroup' => 'konto',
         'tl_class' => 'w50',
         'rgxp' => 'alpha',
-        'mandatory' => false,
+        'mandatory' => true,
         'doNotCopy' => true,
     ],
     'sql' => "varchar(255) NOT NULL default ''",
@@ -182,6 +182,36 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['bank'] = [
         'doNotCopy' => true,
     ],
     'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_sepa_debit_authorisation'] = [
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'checkbox',
+    'eval' => [
+        'feEditable' => true,
+        'feViewable' => true,
+        'feGroup' => 'konto',
+        'tl_class' => 'm12',
+        'mandatory' => true,
+        'doNotCopy' => true,
+    ],
+    'sql' => "char(1) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_member']['fields']['applicant_form_sepa_debit'] = [
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'checkbox',
+    'eval' => [
+        'feEditable' => true,
+        'feViewable' => true,
+        'feGroup' => 'konto',
+        'tl_class' => 'm12',
+        'mandatory' => true,
+        'doNotCopy' => true,
+    ],
+    'sql' => "char(1) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['membership_comments'] = [
