@@ -30,6 +30,8 @@ PaletteManipulator::create()
     ->addField('iban', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('bic', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('bank', 'bank_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('applicant_form_sepa_debit_authorisation', 'bank_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('applicant_form_sepa_debit', 'bank_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', 'tl_member')
 ;
 
