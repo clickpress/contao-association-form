@@ -67,41 +67,47 @@ class ActivateAccountListener
 
         $objEmail->from = $adminMail;
         $objEmail->subject = sprintf(
-            $GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'],
+            $GLOBALS['TL_LANG']['MSC']['adminNotificationSubject'] ?? 'New member registration on %s',
             Idna::decode(Environment::get('host'))
         );
 
         $mailContent = "\n\n";
 
         // Add user details
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['firstname'][0] . ': ' . $member->firstname . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['lastname'][0] . ': ' . $member->lastname . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['dateOfBirth'][0] . ': ' . Date::parse(
-                Config::get('dateFormat'),
-                $member->dateOfBirth
-            ) . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['street'][0] . ': ' . $member->street . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['postal'][0] . ': ' . $member->postal . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['city'][0] . ': ' . $member->city . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['email'][0] . ': ' . $member->email . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['phone'][0] . ': ' . $member->phone . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_legend'] . ': ' . $GLOBALS['TL_LANG']['tl_member']['membership_type'][$member->membership] . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['membership_comments'][1] . ': ' . $member->membership_comments . "\n";
+        $this->addToMail($mailContent, 'firstname', $member->firstname);
+        $this->addToMail($mailContent, 'lastname', $member->lastname);
 
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['sepa_owner'][0] . ': ' . $member->sepa_owner . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['iban'][0] . ': ' . $member->iban . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['bic'][0] . ': ' . $member->bic . "\n";
-        $mailContent .= $GLOBALS['TL_LANG']['tl_member']['bank'][0] . ': ' . $member->bank . "\n";
+        if (!empty($member->dateOfBirth)) {
+            $this->addToMail(
+                $mailContent,
+                'dateOfBirth',
+                Date::parse((string) (Config::get('dateFormat') ?: 'Y-m-d'), (int) $member->dateOfBirth)
+            );
+        }
+
+        $this->addToMail($mailContent, 'street', $member->street);
+        $this->addToMail($mailContent, 'postal', $member->postal);
+        $this->addToMail($mailContent, 'city', $member->city);
+        $this->addToMail($mailContent, 'email', $member->email);
+        $this->addToMail($mailContent, 'phone', $member->phone);
+        $this->addToMail($mailContent, 'membership_legend', $this->getMembershipLabel($member->membership));
+        $this->addToMail($mailContent, 'membership_comments', $member->membership_comments, 1);
+
+        $this->addToMail($mailContent, 'sepa_owner', $member->sepa_owner);
+        $this->addToMail($mailContent, 'iban', $member->iban);
+        $this->addToMail($mailContent, 'bic', $member->bic);
+        $this->addToMail($mailContent, 'bank', $member->bank);
 
         $contaoLink = Environment::get('url') . Environment::get('path') . '/contao/main.php?do=member' . "\n";
         $objEmail->text = sprintf(
-                $GLOBALS['TL_LANG']['MSC']['adminNotificationText'],
+                $GLOBALS['TL_LANG']['MSC']['adminNotificationText']
+                    ?? 'A new member (ID %s) has registered on the website.%sMore details are available in the Contao member management: %s',
                 $member->id,
                 $mailContent . "\n",
                 $contaoLink
             ) . "\n";
 
-        $mailRecipient = '' !== $module->notification_mail ? $module->notification_mail : $adminMail;
+        $mailRecipient = '' !== (string) $module->notification_mail ? (string) $module->notification_mail : (string) $adminMail;
 
         $mailRecipient = explode(',', $mailRecipient);
 
@@ -138,5 +144,31 @@ class ActivateAccountListener
                 ['contao' => new ContaoContext(__FUNCTION__, self::class)]
             );
         }
+    }
+
+    private function addToMail(string &$text, string $key, mixed $field, int $labelIndex = 0): void
+    {
+        if (null === $field || '' === (string) $field) {
+            return;
+        }
+
+        $label = $GLOBALS['TL_LANG']['tl_member'][$key] ?? $key;
+
+        if (\is_array($label)) {
+            $label = $label[$labelIndex] ?? reset($label) ?: $key;
+        }
+
+        $text .= (string) $label . ': ' . (string) $field . "\n";
+    }
+
+    private function getMembershipLabel(mixed $membership): string
+    {
+        if (null === $membership || '' === (string) $membership) {
+            return '';
+        }
+
+        $membership = (string) $membership;
+
+        return (string) ($GLOBALS['TL_LANG']['tl_member']['membership_type'][$membership] ?? $membership);
     }
 }
